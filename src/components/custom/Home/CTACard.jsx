@@ -3,7 +3,7 @@ import { Handshake } from "lucide-react";
 
 const CTACard = () => {
     return (
-        <section className="relative overflow-hidden bg-[#1D4ED8] rounded-2xl p-20 flex flex-col items-center text-center text-white shadow-2xl">
+        <section className="relative overflow-hidden bg-[#1D4ED8] rounded-lg p-20 flex flex-col items-center text-center text-white shadow-2xl">
             {/* Background Decorative Icon */}
             <div className="absolute top-2.5 right-0 -translate-y-1/2 opacity-20 pointer-events-none transform rotate-12">
                 <Handshake size={150} strokeWidth={1} />
