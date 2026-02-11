@@ -1,5 +1,8 @@
+"use client";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import {Button} from "@/components/ui/button";
+import Link from "next/link";
+import { useState } from "react";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -9,6 +12,7 @@ const navItems = [
 ];
 
 export default function Navbar() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <nav className="w-full border-b bg-white">
       <div className="mx-auto h-16 max-w-7xl px-6">
@@ -16,29 +20,30 @@ export default function Navbar() {
           {/* Left - Brand */}
           <div className="flex items-center gap-3">
             <img src="/logo.svg" alt="Logo" className="h-8 w-8" />
-            <span className="text-lg font-semibold text-gray-900">Signbridge</span>
+            <Link href={"/"} className="text-lg font-semibold text-gray-900 cursor-pointer">Signbridge</Link>
           </div>
 
           {/* Center - Navigation Links */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <div className="flex items-center gap-8">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
                   href={item.href}
-                  className="whitespace-nowrap text-sm font-medium text-gray-600 transition-colors hover:text-gray-900"
+                  className="whitespace-nowrap text-md font-medium text-gray-600 transition-colors hover:text-primary transition-all duration-300 ease-in-out"
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
 
           {/* Right - Login & Avatar */}
           <div className="ml-auto flex items-center gap-3">
-            <Button variant="cBridge" size="sm" className={"font-semibold"}>
-              Login
+            <Button variant="cBridge" size="sm" className={"font-semibold"} onClick={() => setIsLoggedIn(!isLoggedIn)}>
+              {isLoggedIn ? "Logout" : "Login"}
             </Button>
+            {isLoggedIn && 
             <Avatar className="h-9 w-9 cursor-pointer">
               <AvatarImage
                 src="https://github.com/shadcn.png"
@@ -46,6 +51,7 @@ export default function Navbar() {
               />
               <AvatarFallback>U</AvatarFallback>
             </Avatar>
+            }
           </div>
         </div>
       </div>
