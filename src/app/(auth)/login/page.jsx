@@ -1,18 +1,23 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { loginUser } from "@/actions/auth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+// Using `window.location.search` inside a client `useEffect` avoids
+// the CSR-bailout warnings with `useSearchParams` during prerender.
 
 export default function Page() {
   const [state, formAction, isPending] = useActionState(loginUser, null);
-  const searchParams = useSearchParams();
-  const registered = searchParams.get("registered");
+  const [registered, setRegistered] = useState(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setRegistered(params.get("registered"));
+  }, []);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
