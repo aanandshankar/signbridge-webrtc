@@ -7,9 +7,28 @@ const ICE_SERVERS = {
             urls: "stun:stun1.l.google.com:19302"
         },
         {
+            urls: "stun:stun2.l.google.com:19302"
+        },
+        {
             urls: "turn:34.100.173.6:3478",
             username: "webrtc",
             credential: "webrtc123"
+        },
+        // Free public TURN servers (Metered.ca - reliable for cross-network)
+        {
+            urls: "turn:a.relay.metered.ca:80",
+            username: "87cf89d8c2a0296a9666d5e3",
+            credential: "n4lQi0E/TGp5K4zw"
+        },
+        {
+            urls: "turn:a.relay.metered.ca:443",
+            username: "87cf89d8c2a0296a9666d5e3",
+            credential: "n4lQi0E/TGp5K4zw"
+        },
+        {
+            urls: "turn:a.relay.metered.ca:443?transport=tcp",
+            username: "87cf89d8c2a0296a9666d5e3",
+            credential: "n4lQi0E/TGp5K4zw"
         }
     ],
     iceTransportPolicy: "all",
