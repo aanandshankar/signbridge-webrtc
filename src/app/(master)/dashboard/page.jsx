@@ -7,11 +7,13 @@ import { activities, systemChecks, userData } from "@/data/dashboardData";
 import { ActivityItem, QuickActionCard, SystemCheckItem } from "@/components/custom/dashboard";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import useUserStore from "@/store/userStore";
 
 export default function DashboardPage() {
     const user = useUserStore((state) => state.user);
     const { stats } = userData; // Keeping stats from mock data for now
+    const router = useRouter();
 
     return (
         <div className="space-y-8">
@@ -44,7 +46,15 @@ export default function DashboardPage() {
                             <p className="text-slate-500 max-w-[240px] text-sm">
                                 Optimized for accessibility with high-contrast UI and low-latency streaming.
                             </p>
-                            <Button className="bg-chart-2 hover:bg-chart-3 text-white px-6 py-5 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/10 transition-all hover:scale-[1.02] active:scale-95 gap-2">
+                            <Button
+                                onClick={() => {
+                                    console.log("Start New Call clicked");
+                                    const roomId = Math.random().toString(36).substring(7);
+                                    console.log("Navigating to room:", roomId);
+                                    router.push(`/room/${roomId}`);
+                                }}
+                                className="bg-chart-2 hover:bg-chart-3 text-white px-6 py-5 rounded-xl text-sm font-bold shadow-lg shadow-blue-500/10 transition-all hover:scale-[1.02] active:scale-95 gap-2"
+                            >
                                 <Video className="w-4 h-4" />
                                 Start New Call
                             </Button>

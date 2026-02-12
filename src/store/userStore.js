@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 
 const useUserStore = create((set) => ({
-    user: null, // User object: { id, name, email, ... }
+    user: { id: "test", username: "Test User", email: "test@example.com" }, // User object: { id, name, email, ... }
     isLoading: false,
 
     // Action to set user (e.g., on login or hydration)
